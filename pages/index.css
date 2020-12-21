@@ -21,7 +21,9 @@
 @import url(../blocks/photo-grid/__elements/photo-grid__elements.css);
 @import url(../blocks/photo-grid/__element/photo-grid__element.css);
 @import url(../blocks/photo-grid/__image/photo-grid__image.css);
+@import url(../blocks/photo-grid/__container/photo-grid__container.css);
 @import url(../blocks/photo-grid/__title/photo-grid__title.css);
-@import url(../blocks/photo-grid/__title/_cut/photo-grid__title_cut_active.css);
+@import url(../blocks/photo-grid/__heart/photo-grid__heart.css);
 /* Блок footer */
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
