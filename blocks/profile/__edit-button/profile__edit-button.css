@@ -1,0 +1,15 @@
+.profile__edit-button {
+  position: absolute;
+  width: 18px;
+  min-height: 18px;
+  top: 8px;
+  right: 19px;
+}
+
+@media screen and (min-width: 1024px) {
+  .profile__edit-button {
+    width: 24px;
+    top: 15px;
+    right: 0;
+  }
+}

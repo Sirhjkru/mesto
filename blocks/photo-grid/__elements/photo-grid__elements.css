@@ -1,0 +1,21 @@
+.photo-grid__elements {
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+  row-gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .photo-grid__elements {
+    grid-template-columns: repeat(2, auto);
+    column-gap: 14px;
+    row-gap: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .photo-grid__elements {
+    grid-template-columns: repeat(3, auto);
+    column-gap: 17px;
+    row-gap: 20px;
+  }
+}
