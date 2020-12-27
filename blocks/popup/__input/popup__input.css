@@ -1,0 +1,11 @@
+.popup__input {
+  width: 89%;
+  margin: 0 auto 30px;
+  border: none;
+  border-bottom: 1px solid #000000;
+  opacity: 0.2;
+}
+
+.popup__input:focus {
+  opacity: 1;
+}

@@ -16,3 +16,8 @@
     margin-right: 0;
   }
 }
+
+.profile__add-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
