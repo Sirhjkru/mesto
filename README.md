@@ -11,5 +11,4 @@
 4. javascript
 
 
-###Ссыдка на работу:
-https://sirhjkru.github.io/mesto/
+[Ссылка на репозиторий](https://sirhjkru.github.io/mesto/index.html)
