@@ -1,23 +1,58 @@
+let body = document.querySelector('body')
 let overlay = document.querySelector('.overlay');
 let editButton = document.querySelector('.profile__edit-button');
 let close = overlay.querySelector('.popup__close');
 let definition = overlay.querySelector('.popup__definition');
 let definitionLow = overlay.querySelector('.popup__definition_low');
-let in_1 = overlay.querySelector('#in_1');
-let in_2 = overlay.querySelector('#in_2');
-let saveButton = overlay.querySelector('.popup__button-save');
-let photoGridHeart = document.querySelectorAll('.photo-grid__heart')
+let photoGridLike = document.querySelectorAll('.photo-grid__button-like')
+let formElement = document.querySelector('.popup__button-save')
+let nameInput = overlay.querySelector('#nameInput');
+let jobInput = overlay.querySelector('#jobInput');
+let profileTitle = document.querySelector('.profile__title');
+let profileSubtitle = document.querySelector('.profile__subtitle');
 
- 
-photoGridHeart.forEach((item) => {
+definition.innerText = profileTitle.innerText;
+definitionLow.innerText = profileSubtitle.innerText;
+
+
+photoGridLike.forEach((item) => {
   item.addEventListener('click', () => {
-    item.src = './images/title-heart-black.png'
+    item.classList.toggle('photo-grid__button-like_active');
   })
 })
+
 
 editButton.addEventListener("click", () => {
   overlay.style.display = 'block';
 })
+
+
+close.addEventListener("click", () => {
+    overlay.style.display = 'none';
+})
+
+
+overlay.addEventListener("click", (event) => {
+  if (event.target === event.currentTarget){
+    overlay.style.display = 'none';
+  }
+})
+
+
+function handleFormSubmit (event) {
+    event.preventDefault(); 
+    if (nameInput.value == '') {
+      profileTitle.textContent = definition.innerText;
+    }else{
+      profileTitle.textContent = nameInput.value;
+    }
+    if (jobInput.value == '') {
+      profileSubtitle.textContent = definitionLow.innerText;
+    }else{
+      profileSubtitle.textContent = jobInput.value;
+    }
+    overlay.style.display = 'none';
+}
 
 
 function textEdit (inspector, edit) {
@@ -25,23 +60,31 @@ function textEdit (inspector, edit) {
     edit.style.display = 'None';
   })
   inspector.addEventListener('focusout', () => {
-    if (inspector.value === '') {
+    if (inspector.value == '') {
       edit.style.display = 'block';
     }
   })
 }
 
 
-close.addEventListener("click", () => {
-  if (in_1.value != '' || in_2.value != '') {
-      saveButton.style.border = '2px solid red';
-  }else{
-    saveButton.style.border = 'none';
+textEdit (nameInput, definition);
+textEdit (jobInput, definitionLow);
+
+
+body.addEventListener('keyup', function(event) {
+  event.preventDefault();
+  if ((event.keyCode === 27) && (overlay.style.display = 'block')) {
     overlay.style.display = 'none';
   }
 })
 
-textEdit (in_1, definition);
-textEdit (in_2, definitionLow);
+
+body.addEventListener('keyup', function(event) {
+  event.preventDefault();
+  if (event.keyCode === 13) {
+    handleFormSubmit(event);
+  }
+})
 
 
+formElement.addEventListener('click', handleFormSubmit)

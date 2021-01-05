@@ -1,6 +1,6 @@
 .popup__button-save {
   width: 89%;
-  margin: 18px auto 55px;
+  margin: 18px auto 37px;
   padding-top: 14px;
   padding-bottom: 18px;
   background: #000000;
@@ -11,10 +11,12 @@
   text-align: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .popup__button-save {
     font-size: 14px;
     line-height: 17px;
+    margin-bottom: 25px;
+    margin-bottom: 55px;
   }
 }
 

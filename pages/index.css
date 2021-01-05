@@ -22,10 +22,9 @@
 @import url(../blocks/photo-grid/__element/photo-grid__element.css);
 @import url(../blocks/photo-grid/__image/photo-grid__image.css);
 @import url(../blocks/photo-grid/__container/photo-grid__container.css);
-@import url(../blocks/popup/__definition/popup__definition.css);
-@import url(../blocks/popup/__definition/_low/popup__definition_low.css);
 @import url(../blocks/photo-grid/__title/photo-grid__title.css);
-@import url(../blocks/photo-grid/__heart/photo-grid__heart.css);
+@import url(../blocks/photo-grid/__button-like/photo-grid__button-like.css);
+@import url(../blocks/photo-grid/__button-like/_active/photo-grid__button-like_active.css);
 /* Блок footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
@@ -34,5 +33,7 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__definition/popup__definition.css);
+@import url(../blocks/popup/__definition/_low/popup__definition_low.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/popup__button-save/popup__button-save.css);
