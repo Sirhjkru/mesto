@@ -5,8 +5,8 @@ let editButton = document.querySelector('.profile__edit-button');
 let popupClose = overlay.querySelector('.popup__image-button-close');
 let photoGridLike = document.querySelectorAll('.photo-grid__button-like');
 let formElement = document.querySelector('.popup__button-save');
-let nameInput = form.elements.nameInput;
-let jobInput = form.elements.jobInput;
+let nameInput = form.elements.name;
+let jobInput = form.elements.job;
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 
