@@ -1,11 +1,13 @@
 .photo-grid__button-like {
-  width: 21px;
-  height: 21px;
-  max-height: 19px;
+  width: 22px;
   margin-top: 31px;
   margin-right: 22.4px;
   margin-bottom: 31px;
-  background-image: url('../../../images/button-like.png');
+  background: none;
+  background-image: url('../../../images/button-like.svg');
+  border: none;
+  outline: none;
+  padding: 0;
 }
 
 .photo-grid__button-like:hover {

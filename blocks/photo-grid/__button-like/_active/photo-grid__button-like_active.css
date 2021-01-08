@@ -1,5 +1,5 @@
 .photo-grid__button-like_active{
     width: 22px;
     transform: scale(0.9);
-    background-image: url('../../../../images/botton-like-active.png');
+    background-image: url('../../../../images/botton-like-active.svg');
   }

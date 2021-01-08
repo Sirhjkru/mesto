@@ -1,9 +1,9 @@
 .photo-grid {
-  margin: 26px auto 0;
+  margin: 31px auto 0;
 }
 
 @media screen and (max-width: 768px) {
   .photo-grid {
-    margin-top: 18px;
+    margin-top: 32px;
   }
 }

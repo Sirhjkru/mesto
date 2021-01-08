@@ -1,20 +1,15 @@
-let body = document.querySelector('body'),
- overlay = document.querySelector('.overlay'),
- editButton = document.querySelector('.profile__edit-button'),
- popupClose = overlay.querySelector('.popup__close'),
- definition = overlay.querySelector('.popup__definition'),
- definitionLow = overlay.querySelector('.popup__definition_low'),
- photoGridLike = document.querySelectorAll('.photo-grid__button-like'),
- formElement = document.querySelector('.popup__button-save'),
- nameInput = overlay.querySelector('#nameInput'),
- jobInput = overlay.querySelector('#jobInput'),
- profileTitle = document.querySelector('.profile__title'),
- profileSubtitle = document.querySelector('.profile__subtitle');
+let body = document.querySelector('body');
+let form = document.forms.popup;
+let overlay = document.querySelector('.overlay');
+let editButton = document.querySelector('.profile__edit-button');
+let popupClose = overlay.querySelector('.popup__image-button-close');
+let photoGridLike = document.querySelectorAll('.photo-grid__button-like');
+let formElement = document.querySelector('.popup__button-save');
+let nameInput = form.elements.nameInput;
+let jobInput = form.elements.jobInput;
+let profileTitle = document.querySelector('.profile__title');
+let profileSubtitle = document.querySelector('.profile__subtitle');
 
-
-
-definition.innerText = profileTitle.innerText;
-definitionLow.innerText = profileSubtitle.innerText;
 
 
 photoGridLike.forEach((item) => {
@@ -24,69 +19,41 @@ photoGridLike.forEach((item) => {
 })
 
 
-editButton.addEventListener("click", () => {
-  overlay.style.display = 'block';
-})
+function openPopup() {
+  overlay.classList.add('overlay_popup-opened');
+  nameInput.value = profileTitle.textContent;
+  jobInput.value = profileSubtitle.textContent;
+};
 
 
-popupClose.addEventListener("click", () => {
-    overlay.style.display = 'none';
-})
+function closePopup() {
+  overlay.classList.remove('overlay_popup-opened');
+};
 
 
-overlay.addEventListener("click", (event) => {
+function handleFormSubmit (evt) {
+    evt.preventDefault(); 
+    profileTitle.textContent = nameInput.value;
+    profileSubtitle.textContent = jobInput.value;
+    overlay.classList.remove('overlay_popup-opened');
+}
+
+
+overlay.addEventListener("mousedown", (event) => {
   if (event.target === event.currentTarget){
-    overlay.style.display = 'none';
-  }
-})
-
-
-function handleFormSubmit (event) {
-    event.preventDefault(); 
-    if (nameInput.value === '') {
-      profileTitle.textContent = definition.innerText;
-    }else{
-      profileTitle.textContent = nameInput.value;
-    }
-    if (jobInput.value === '') {
-      profileSubtitle.textContent = definitionLow.innerText;
-    }else{
-      profileSubtitle.textContent = jobInput.value;
-    }
-    overlay.style.display = 'none';
-}
-
-
-function textEdit (inspector, edit) {
-  inspector.addEventListener('focus', () => {
-    edit.style.display = 'None';
-  })
-  inspector.addEventListener('focusout', () => {
-    if (inspector.value === '') {
-      edit.style.display = 'block';
-    }
-  })
-}
-
-
-textEdit (nameInput, definition);
-textEdit (jobInput, definitionLow);
-
-
-body.addEventListener('keyup', function(event) {
-  event.preventDefault();
-  if ((event.keyCode === 27) && (overlay.style.display = 'block')) {
-    overlay.style.display = 'none';
+    overlay.classList.remove('overlay_popup-opened');
   }
 })
 
 
 body.addEventListener('keyup', function(event) {
   event.preventDefault();
-  if (event.keyCode === 13) {
-    handleFormSubmit(event);
+  if (event.keyCode === 27) {
+    overlay.classList.remove('overlay_popup-opened');
   }
 })
 
 
-formElement.addEventListener('click', handleFormSubmit)
+form.addEventListener('submit', handleFormSubmit);
+editButton.addEventListener('click', openPopup); 
+popupClose.addEventListener('click', closePopup); 

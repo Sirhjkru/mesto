@@ -1,0 +1,9 @@
+.popup__image-button-close {
+  width: 26px;
+}
+
+@media screen and (min-width: 768px) {
+  .popup__image-button-close {
+    width: 40px;
+  }
+}

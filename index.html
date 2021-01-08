@@ -9,19 +9,22 @@
 <body>
   <div class="page">
     <header class="header">
-      <img src="./images/Mesto.png" class="header__logo" alt="Логотип">
+      <img src="./images/header-logo.svg" class="header__logo" alt="Логотип">
+      <div class="header__line"></div>
     </header>
     <main class="content">
       <section class="profile">
         <img class="profile__avatar" src="./images/Jacques-Yves-Cousteau.jpg" alt="Жак-Ив Кусто">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <img class="profile__edit-button" src="./images/Edit-Button.png" alt="Кнопка редактирования профиля">
+          <button class="profile__edit-button">
+            <img class="profile__image-edit-button" src="./images/Edit-Button.svg" alt="Кнопка редактирования профиля">
+          </button>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <div class="profile__add-button">
-          <img src="./images/profile-plus.png" alt="Кнопка добавления картинки">
-        </div>
+        <button class="profile__add-button">
+          <img class="profile__image-add-button" src="./images/add-button.svg" alt="Кнопка добавления картинки">
+        </button>
       </section>
       <section class="photo-grid">
         <ul class="photo-grid__elements">
@@ -29,60 +32,62 @@
             <img src="./images/KARACHAEVO-CHERKESIYA.jpg" class="photo-grid__image" alt="Фото 'Карачаево-Черкесия'">
             <div class="photo-grid__container">
               <h2 class="photo-grid__title">Карачаево-Черкесия</h2>
-              <div class="photo-grid__button-like"></div>
+              <button class="photo-grid__button-like"></button>
             </div>
           </li>
           <li class="photo-grid__element">
             <img src="./images/Gora-Elbrus.jpg" class="photo-grid__image" alt="Фото 'Гора Эльбрус'">
             <div class="photo-grid__container">
               <h2 class="photo-grid__title">Гора Эльбрус</h2>
-              <div class="photo-grid__button-like"></div>
+              <button class="photo-grid__button-like"></button>
             </div>
           </li>
           <li class="photo-grid__element">
             <img src="./images/Dombaj.jpg" class="photo-grid__image" alt="Фото 'Домбай'">
             <div class="photo-grid__container">
               <h2 class="photo-grid__title">Домбай</h2>
-              <div class="photo-grid__button-like"></div>
+              <button class="photo-grid__button-like"></button>
             </div>
           </li>
           <li class="photo-grid__element">
             <img src="./images/Gora-Elbrus.jpg" class="photo-grid__image" alt="Фото 'Гора Эльбрус'">
             <div class="photo-grid__container">
               <h2 class="photo-grid__title">Гора Эльбрус</h2>
-              <div class="photo-grid__button-like"></div>
+              <button class="photo-grid__button-like"></button>
             </div>
           </li>
           <li class="photo-grid__element">
             <img src="./images/Dombaj.jpg" class="photo-grid__image" alt="Фото 'Домбай'">
             <div class="photo-grid__container">
               <h2 class="photo-grid__title">Домбай</h2>
-              <div class="photo-grid__button-like"></div>
+              <button class="photo-grid__button-like"></button>
             </div>
           </li>
           <li class="photo-grid__element">
             <img src="./images/KARACHAEVO-CHERKESIYA.jpg" class="photo-grid__image" alt="Фото 'Карачаево-Черкесия'">
             <div class="photo-grid__container">
               <h2 class="photo-grid__title">Карачаево-Черкесия</h2>
-              <div class="photo-grid__button-like"></div>
+              <button class="photo-grid__button-like"></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
     <footer class="footer">
-      <div class="footer__copyright">&copy; 2020 Mesto Russia</div>
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <section class="overlay">
-      <div class="popup">
-        <img class="popup__close" src="./images/Close-Icon.png" alt="Кнопка 'Закрыть'">
+      <form class="popup" name="popup">
+        <button class="popup__button-close">
+          <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
+        </button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <div class="popup__definition"></div>
-        <input id = "nameInput" class="popup__input" type="text">
-        <div class="popup__definition popup__definition_low"></div>
-        <input id = "jobInput" class="popup__input" type="text">
-        <input class="popup__button-save" type="button" value="Сохранить">
-      </div>
+        <input class="popup__input" type="text" name="nameInput">
+        <div class="popup__line"></div>
+        <input class="popup__input" type="text" name="jobInput">
+        <div class="popup__line"></div>
+        <button class="popup__button-save" type="submit">Сохранить</button>
+      </form>
     </section>
   </div>
   <script src="./script/script.js"></script>

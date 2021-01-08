@@ -3,7 +3,6 @@
   min-width: 320px;
   width: 68.75vw;
   max-width: 880px;
-  border-bottom: 1px solid #545454;
 }
 
 @media screen and (min-width: 768px){
