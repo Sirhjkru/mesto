@@ -1,9 +1,0 @@
-.popup__definition_low {
-  top: 53%;
-}
-
-@media screen and (min-width: 767px) {
-  .popup__definition_low {
-    top: 50%;
-  }
-}
