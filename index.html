@@ -27,48 +27,6 @@
       </section>
       <section class="photo-grid">
         <ul class="photo-grid__elements">
-          <li class="photo-grid__element">
-            <img src="./images/KARACHAEVO-CHERKESIYA.jpg" class="photo-grid__image" alt="Фото 'Карачаево-Черкесия'">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Карачаево-Черкесия</h2>
-              <button class="photo-grid__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-grid__element">
-            <img src="./images/Gora-Elbrus.jpg" class="photo-grid__image" alt="Фото 'Гора Эльбрус'">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Гора Эльбрус</h2>
-              <button class="photo-grid__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-grid__element">
-            <img src="./images/Dombaj.jpg" class="photo-grid__image" alt="Фото 'Домбай'">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Домбай</h2>
-              <button class="photo-grid__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-grid__element">
-            <img src="./images/Gora-Elbrus.jpg" class="photo-grid__image" alt="Фото 'Гора Эльбрус'">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Гора Эльбрус</h2>
-              <button class="photo-grid__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-grid__element">
-            <img src="./images/Dombaj.jpg" class="photo-grid__image" alt="Фото 'Домбай'">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Домбай</h2>
-              <button class="photo-grid__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-grid__element">
-            <img src="./images/KARACHAEVO-CHERKESIYA.jpg" class="photo-grid__image" alt="Фото 'Карачаево-Черкесия'">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Карачаево-Черкесия</h2>
-              <button class="photo-grid__button-like" type="button"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -83,6 +41,15 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <input class="popup__input" type="text" name="name">
         <input class="popup__input" type="text" name="job">
+        <button class="popup__button-save" type="submit">Сохранить</button>
+      </form>
+      <form class="popup" name="place">
+        <button class="popup__button-close" type="button">
+          <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
+        </button>
+        <h2 class="popup__title">Новое место</h2>
+        <input class="popup__input" type="text" name="designation" placeholder ="Название">
+        <input class="popup__input" type="text" name="link" placeholder ="Ссылка на картинку">
         <button class="popup__button-save" type="submit">Сохранить</button>
       </form>
     </section>
