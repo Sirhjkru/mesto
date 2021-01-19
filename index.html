@@ -52,8 +52,26 @@
         <input class="popup__input" type="text" name="link" placeholder ="Ссылка на картинку">
         <button class="popup__button-save" type="submit">Сохранить</button>
       </form>
+      <!-- <form class="popup" name="image">
+        <button class="popup__button-close" type="button">
+          <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
+        </button>
+        <img class="" src="./images/Close-Icon.svg" alt="'">
+        <h2 class="popup__title"></h2>
+      </form> -->
     </section>
   </div>
+
+  <template class='item_template'>
+    <li class="photo-grid__element">
+      <img src="" class="photo-grid__image" alt="">
+      <div class="photo-grid__container">
+      <h2 class="photo-grid__title"></h2>
+      <button class="photo-grid__button-like" type="button"></button>
+      </div>
+      <img src='./images/delete-button.svg' class="photo-grid__delete-button" alt="кнопка 'Удалить'">
+    </li>
+  </template>
   <script src="./script/script.js"></script>
 </body>
 </html>
