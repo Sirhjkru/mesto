@@ -1,0 +1,8 @@
+.popup__margin-disabled {
+  margin: 0;
+  padding-top: 10px;
+  width: auto;
+  color: #FFFFFF;
+  font-size: 12px;
+  line-height: 15px;
+}

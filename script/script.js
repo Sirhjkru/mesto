@@ -1,11 +1,10 @@
 const body = document.querySelector('body');
 const form = document.forms.popup;
 const place = document.forms.place;
+const image = document.forms.image;
 const overlay = document.querySelector('.overlay');
-const popup = overlay.querySelectorAll('.popup');
 const editButton = document.querySelector('.profile__edit-button');
 const popupClose = overlay.querySelectorAll('.popup__image-button-close');
-const formElement = document.querySelector('.popup__button-save');
 const nameInput = form.elements.name;
 const jobInput = form.elements.job;
 const designation = place.elements.designation;
@@ -14,9 +13,9 @@ const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const addButton = document.querySelector('.profile__add-button');
 const photoGridElements = document.querySelector('.photo-grid__elements');
+const popupImage = image.querySelector('.popup__image');
 const itemTemplate = document.querySelector('.item_template').content;
-let deleteButton;
-let photoGridLike;
+const popup = document.querySelector('.popup');
 let initialCards = [
   {
     name: 'Архыз',
@@ -27,6 +26,15 @@ let initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   }
 ];
+
+function enablePopup (name) {
+  name.classList.add('popup_opened');
+}
+
+function disPopup (name) {
+  name.classList.remove('popup_opened');
+}
+  
 
 function render () {
   initialCards.forEach(renderItem);
@@ -43,8 +51,12 @@ function renderItem(item) {
   photoGridElements.prepend(htmlElement);
 }
 
-function openImage () {
+function openImage (evt) {
   openOverlay();
+  enablePopup(image, 1)
+  popupImage.setAttribute('src', evt.target.src)
+  let name = evt.target.offsetParent.querySelector('.photo-grid__title').innerText
+  image.querySelector('.popup__title').innerText = name
 }
 
 function hendlerSubmit(evt) {
@@ -58,7 +70,7 @@ function hendlerSubmit(evt) {
     renderItem(item)
   }
   overlay.classList.remove('overlay_popup-opened');
-  place.classList.remove('popup_opened');
+  disPopup(place);
 }
 
 function photoLike (evt) {
@@ -70,49 +82,49 @@ function openOverlay () {
 }
 
 function popupOpened () {
-  form.classList.add('popup_opened');
+  enablePopup(form)
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
 }
 
 function placeOpened () {
-  place.classList.add('popup_opened');
+  enablePopup(place)
 }
-
 
 popupClose.forEach((item) => {
   item.addEventListener('click', () => {
     overlay.classList.remove('overlay_popup-opened');
-    form.classList.remove('popup_opened');
-    place.classList.remove('popup_opened');
+    disPopup(place);
+    disPopup(form);
+    disPopup(image);
   })
 })
-
 
 function handleFormSubmit (evt) {
     evt.preventDefault(); 
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = jobInput.value;
     overlay.classList.remove('overlay_popup-opened');
-    form.classList.remove('popup_opened');
+    disPopup(form);
+    disPopup(image);
 }
-
 
 overlay.addEventListener("mousedown", (event) => {
   if (event.target === event.currentTarget){
     overlay.classList.remove('overlay_popup-opened');
-    form.classList.remove('popup_opened');
-    place.classList.remove('popup_opened');
+    disPopup(place);
+    disPopup(form);
+    disPopup(image);
   }
 })
-
 
 body.addEventListener('keyup', function(event) {
   event.preventDefault();
   if (event.keyCode === 27) {
     overlay.classList.remove('overlay_popup-opened');
-    form.classList.remove('popup_opened');
-    place.classList.remove('popup_opened');
+    disPopup(place);
+    disPopup(form);
+    disPopup(image);
   }
 })
 
@@ -127,56 +139,3 @@ editButton.addEventListener('click', openOverlay);
 editButton.addEventListener('click', popupOpened); 
 addButton.addEventListener('click', openOverlay);
 addButton.addEventListener('click', placeOpened);
-
-
-
-
-
-
-// function placeHandlerFormSubmit (evt) {
-//   evt.preventDefault();
-//   if (designation.value !== '' || url.value !== '') {
-//     initialCards.unshift(
-//       {
-//         name: designation.value,
-//         link: url.value
-//       }
-//     )
-//     photoGridElements.insertAdjacentHTML('afterbegin', `
-//     <li class="photo-grid__element">
-//       <img src=${url.value} class="photo-grid__image" alt="Фото ${designation.value}">
-//       <div class="photo-grid__container">
-//         <h2 class="photo-grid__title">${designation.value}</h2>
-//         <button class="photo-grid__button-like" type="button"></button>
-//       </div>
-//       <img src='./images/delete-button.svg' class="photo-grid__delete-button" alt="кнопка 'Удалить'">
-//     </li>
-//     `)
-//     photoGridLike = document.querySelectorAll('.photo-grid__button-like');
-//     deleteButton = document.querySelectorAll('.photo-grid__delete-button');
-//     photoLike();
-//     deleteElement()
-//   }
-  // overlay.classList.remove('overlay_popup-opened');
-  // place.classList.remove('popup_opened');
-// }
-
-
-  // initialCards.forEach((item) => {
-  //   photoGridElements.insertAdjacentHTML('beforeEnd', `
-  //       <li class="photo-grid__element">
-  //         <img src=${item.link} class="photo-grid__image" alt="Фото ${item.name}">
-  //         <div class="photo-grid__container">
-  //           <h2 class="photo-grid__title">${item.name}</h2>
-  //           <button class="photo-grid__button-like" type="button"></button>
-  //         </div>
-  //         <img src='./images/delete-button.svg' class="photo-grid__delete-button" alt="кнопка 'Удалить'">
-  //       </li>
-  //   `)
-  // })
-  // photoGridLike = document.querySelectorAll('.photo-grid__button-like');
-  // deleteButton = document.querySelectorAll('.photo-grid__delete-button');
-
-
-  // 
-// 

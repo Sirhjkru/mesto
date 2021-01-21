@@ -3,3 +3,7 @@
   width: 282px;
   height: 282px;
 }
+
+.photo-grid__image:hover {
+  cursor: pointer;
+}

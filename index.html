@@ -35,30 +35,34 @@
     </footer>
     <section class="overlay">
       <form class="popup" name="popup">
-        <button class="popup__button-close" type="button">
-          <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
-        </button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input" type="text" name="name">
-        <input class="popup__input" type="text" name="job">
-        <button class="popup__button-save" type="submit">Сохранить</button>
+        <div class = "popup__form">
+          <button class="popup__button-close" type="button">
+            <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
+          </button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input" type="text" name="name">
+          <input class="popup__input" type="text" name="job">
+          <button class="popup__button-save" type="submit">Сохранить</button>
+        </div>
       </form>
       <form class="popup" name="place">
-        <button class="popup__button-close" type="button">
-          <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
-        </button>
-        <h2 class="popup__title">Новое место</h2>
-        <input class="popup__input" type="text" name="designation" placeholder ="Название">
-        <input class="popup__input" type="text" name="link" placeholder ="Ссылка на картинку">
-        <button class="popup__button-save" type="submit">Сохранить</button>
+        <div class="popup__form">
+          <button class="popup__button-close" type="button">
+            <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
+          </button>
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__input" type="text" name="designation" placeholder ="Название">
+          <input class="popup__input" type="text" name="link" placeholder ="Ссылка на картинку">
+          <button class="popup__button-save" type="submit">Сохранить</button>
+        </div>
       </form>
-      <!-- <form class="popup" name="image">
+      <form class="popup popup_form-disabled" name="image">
+        <img src="" class="popup__image" alt="">
         <button class="popup__button-close" type="button">
           <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
         </button>
-        <img class="" src="./images/Close-Icon.svg" alt="'">
-        <h2 class="popup__title"></h2>
-      </form> -->
+        <h2 class="popup__title popup__margin-disabled"></h2>
+      </form>
     </section>
   </div>
 

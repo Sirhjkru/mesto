@@ -1,0 +1,10 @@
+.popup_form-disabled {
+  position: inherit;
+  width: auto;
+  min-width: auto;
+  max-width: 75vw;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  justify-content: center;
+}
