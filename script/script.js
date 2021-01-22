@@ -5,9 +5,9 @@ const image = document.forms.image;
 const overlayEdit = document.querySelector('#edit');
 const overlayPlace = document.querySelector('#place');
 const overlayImage = document.querySelector('#image');
-let overlay = document.querySelectorAll('.overlay');
+const overlays = document.querySelectorAll('.overlay');
 const editButton = document.querySelector('.profile__edit-button');
-const popupClose = document.querySelectorAll('.popup__image-button-close');
+const buttonsClose = document.querySelectorAll('.popup__image-button-close');
 const nameInput = form.elements.name;
 const jobInput = form.elements.job;
 const designation = place.elements.designation;
@@ -18,7 +18,6 @@ const addButton = document.querySelector('.profile__add-button');
 const photoGridElements = document.querySelector('.photo-grid__elements');
 const popupImage = image.querySelector('.popup__image');
 const itemTemplate = document.querySelector('.template').content;
-const popup = document.querySelectorAll('.popup');
 let initialCards = [
   {
     name: 'Архыз',
@@ -46,46 +45,7 @@ let initialCards = [
   }
 ]; 
 
-function render () {
-  initialCards.forEach(renderItem);
-};
-
-function renderItem(item) {
-  const htmlElement = itemTemplate.cloneNode(true);
-  htmlElement.querySelector('.photo-grid__image').setAttribute("src", item.link);
-  htmlElement.querySelector('.photo-grid__image').setAttribute("alt", item.name);
-  htmlElement.querySelector('.photo-grid__title').innerText = item.name;
-  htmlElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteElement);
-  htmlElement.querySelector('.photo-grid__button-like').addEventListener('click', photoLike);
-  htmlElement.querySelector('.photo-grid__image').addEventListener('click', openImage)
-  photoGridElements.prepend(htmlElement);
-}
-
-function openImage (evt) {
-  openOverlayimage();
-  popupImage.setAttribute('src', evt.target.src)
-  let name = evt.target.offsetParent.querySelector('.photo-grid__title').innerText
-  image.querySelector('.popup__title').innerText = name
-}
-
-function hendlerSubmit(evt) {
-  evt.preventDefault();
-  if (designation.value !== '' || url.value !== '') {
-    let item =
-      {
-        name: designation.value,
-        link: url.value
-      }
-    renderItem(item)
-  }
-  disOverlay ();
-}
-
-function photoLike (evt) {
-  evt.target.classList.toggle('photo-grid__button-like_active');
-}
-
-function disOverlay () {
+function disabledOverlay () {
   overlayEdit.classList.remove('overlay_popup-opened');
   overlayPlace.classList.remove('overlay_popup-opened');
   overlayImage.classList.remove('overlay_popup-opened');
@@ -99,7 +59,7 @@ function openOverlayPlace () {
   overlayPlace.classList.add('overlay_popup-opened');
 }
 
-function openOverlayimage () {
+function openOverlayImage () {
   overlayImage.classList.add('overlay_popup-opened');
 }
 
@@ -108,9 +68,53 @@ function popupOpened () {
   jobInput.value = profileSubtitle.textContent;
 }
 
-popupClose.forEach((item) => {
+function deleteElement (evt) {
+  evt.target.closest('.photo-grid__element').remove();
+}
+
+function photoLike (evt) {
+  evt.target.classList.toggle('photo-grid__button-like_active');
+}
+
+function openImage (evt) {
+  openOverlayImage();
+  popupImage.setAttribute('src', evt.target.src)
+  let name = evt.target.offsetParent.querySelector('.photo-grid__title').innerText
+  image.querySelector('.popup__title').innerText = name
+}
+
+function renderItem(item) {
+  const htmlElement = itemTemplate.cloneNode(true);
+  const photoGridImage = htmlElement.querySelector('.photo-grid__image');
+  photoGridImage.setAttribute("src", item.link);
+  photoGridImage.setAttribute("alt", item.name);
+  htmlElement.querySelector('.photo-grid__title').innerText = item.name;
+  htmlElement.querySelector('.photo-grid__delete-button').addEventListener('click', deleteElement);
+  htmlElement.querySelector('.photo-grid__button-like').addEventListener('click', photoLike);
+  htmlElement.querySelector('.photo-grid__image').addEventListener('click', openImage)
+  photoGridElements.prepend(htmlElement);
+}
+
+function render () {
+  initialCards.forEach(renderItem);
+};
+
+function hendlerSubmit(evt) {
+  evt.preventDefault();
+  if (designation.value !== '' || url.value !== '') {
+    let item =
+      {
+        name: designation.value,
+        link: url.value
+      }
+    renderItem(item)
+  }
+  disabledOverlay ();
+}
+
+buttonsClose.forEach((item) => {
   item.addEventListener('click', () => {
-    disOverlay ();
+    disabledOverlay ();
   })
 })
 
@@ -118,13 +122,13 @@ function handleFormSubmit (evt) {
     evt.preventDefault(); 
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = jobInput.value;
-    disOverlay ();
+    disabledOverlay ();
 }
 
-overlay.forEach((item) => {
+overlays.forEach((item) => {
   item.addEventListener("mousedown", (event) => {
     if (event.target === event.currentTarget){
-      disOverlay ();
+      disabledOverlay ();
     }
   })
 })
@@ -132,13 +136,9 @@ overlay.forEach((item) => {
 body.addEventListener('keyup', function(event) {
   event.preventDefault();
   if (event.keyCode == 27) {
-    disOverlay ();
+    disabledOverlay ();
   }
 })
-
-function deleteElement (evt) {
-  evt.target.closest('.photo-grid__element').remove();
-}
 
 render();
 form.addEventListener('submit', handleFormSubmit);
