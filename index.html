@@ -33,31 +33,31 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <section class="overlay">
+    <section id="edit" class="overlay">
       <form class="popup" name="popup">
-        <div class = "popup__form">
-          <button class="popup__button-close" type="button">
-            <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
-          </button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input" type="text" name="name">
-          <input class="popup__input" type="text" name="job">
-          <button class="popup__button-save" type="submit">Сохранить</button>
-        </div>
+        <button class="popup__button-close" type="button">
+          <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
+        </button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__input" type="text" name="name">
+        <input class="popup__input" type="text" name="job">
+        <button class="popup__button-save" type="submit">Сохранить</button>
       </form>
+    </section>
+    <section id="place" class="overlay">
       <form class="popup" name="place">
-        <div class="popup__form">
-          <button class="popup__button-close" type="button">
-            <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
-          </button>
-          <h2 class="popup__title">Новое место</h2>
-          <input class="popup__input" type="text" name="designation" placeholder ="Название">
-          <input class="popup__input" type="text" name="link" placeholder ="Ссылка на картинку">
-          <button class="popup__button-save" type="submit">Сохранить</button>
-        </div>
+        <button class="popup__button-close" type="button">
+          <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
+        </button>
+        <h2 class="popup__title">Новое место</h2>
+        <input class="popup__input" type="text" name="designation" placeholder ="Название">
+        <input class="popup__input" type="text" name="link" placeholder ="Ссылка на картинку">
+        <button class="popup__button-save" type="submit">Сохранить</button>
       </form>
+    </section>
+    <section id="image" class="overlay">
       <form class="popup popup_form-disabled" name="image">
-        <img src="" class="popup__image" alt="">
+        <img src="#" class="popup__image" alt="">
         <button class="popup__button-close" type="button">
           <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
         </button>
@@ -66,14 +66,14 @@
     </section>
   </div>
 
-  <template class='item_template'>
+  <template class='template'>
     <li class="photo-grid__element">
-      <img src="" class="photo-grid__image" alt="">
+      <img src="" class="photo-grid__image" alt="Тут должна быть картинка">
       <div class="photo-grid__container">
       <h2 class="photo-grid__title"></h2>
       <button class="photo-grid__button-like" type="button"></button>
       </div>
-      <img src='./images/delete-button.svg' class="photo-grid__delete-button" alt="кнопка 'Удалить'">
+      <img src='./images/delete-button.svg' class="photo-grid__delete-button" alt="кнопка Удалить">
     </li>
   </template>
   <script src="./script/script.js"></script>

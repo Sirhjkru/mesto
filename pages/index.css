@@ -42,7 +42,6 @@
 @import url(../blocks/overlay/overlay.css);
 @import url(../blocks/overlay/_popup-opened/overlay_popup-opened.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/_form-disabled/popup_form-disabled.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);

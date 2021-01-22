@@ -2,9 +2,12 @@ const body = document.querySelector('body');
 const form = document.forms.popup;
 const place = document.forms.place;
 const image = document.forms.image;
-const overlay = document.querySelector('.overlay');
+const overlayEdit = document.querySelector('#edit');
+const overlayPlace = document.querySelector('#place');
+const overlayImage = document.querySelector('#image');
+let overlay = document.querySelectorAll('.overlay');
 const editButton = document.querySelector('.profile__edit-button');
-const popupClose = overlay.querySelectorAll('.popup__image-button-close');
+const popupClose = document.querySelectorAll('.popup__image-button-close');
 const nameInput = form.elements.name;
 const jobInput = form.elements.job;
 const designation = place.elements.designation;
@@ -14,8 +17,8 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const addButton = document.querySelector('.profile__add-button');
 const photoGridElements = document.querySelector('.photo-grid__elements');
 const popupImage = image.querySelector('.popup__image');
-const itemTemplate = document.querySelector('.item_template').content;
-const popup = document.querySelector('.popup');
+const itemTemplate = document.querySelector('.template').content;
+const popup = document.querySelectorAll('.popup');
 let initialCards = [
   {
     name: 'Архыз',
@@ -26,15 +29,6 @@ let initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   }
 ];
-
-function enablePopup (name) {
-  name.classList.add('popup_opened');
-}
-
-function disPopup (name) {
-  name.classList.remove('popup_opened');
-}
-  
 
 function render () {
   initialCards.forEach(renderItem);
@@ -52,8 +46,7 @@ function renderItem(item) {
 }
 
 function openImage (evt) {
-  openOverlay();
-  enablePopup(image, 1)
+  openOverlayimage();
   popupImage.setAttribute('src', evt.target.src)
   let name = evt.target.offsetParent.querySelector('.photo-grid__title').innerText
   image.querySelector('.popup__title').innerText = name
@@ -69,34 +62,39 @@ function hendlerSubmit(evt) {
       }
     renderItem(item)
   }
-  overlay.classList.remove('overlay_popup-opened');
-  disPopup(place);
+  disOverlay ();
 }
 
 function photoLike (evt) {
   evt.target.classList.toggle('photo-grid__button-like_active');
 }
 
-function openOverlay () {
-  overlay.classList.add('overlay_popup-opened');
+function disOverlay () {
+  overlayEdit.classList.remove('overlay_popup-opened');
+  overlayPlace.classList.remove('overlay_popup-opened');
+  overlayImage.classList.remove('overlay_popup-opened');
+}
+
+function openOverlayEdit () {
+  overlayEdit.classList.add('overlay_popup-opened');
+}
+
+function openOverlayPlace () {
+  overlayPlace.classList.add('overlay_popup-opened');
+}
+
+function openOverlayimage () {
+  overlayImage.classList.add('overlay_popup-opened');
 }
 
 function popupOpened () {
-  enablePopup(form)
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
 }
 
-function placeOpened () {
-  enablePopup(place)
-}
-
 popupClose.forEach((item) => {
   item.addEventListener('click', () => {
-    overlay.classList.remove('overlay_popup-opened');
-    disPopup(place);
-    disPopup(form);
-    disPopup(image);
+    disOverlay ();
   })
 })
 
@@ -104,27 +102,21 @@ function handleFormSubmit (evt) {
     evt.preventDefault(); 
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = jobInput.value;
-    overlay.classList.remove('overlay_popup-opened');
-    disPopup(form);
-    disPopup(image);
+    disOverlay ();
 }
 
-overlay.addEventListener("mousedown", (event) => {
-  if (event.target === event.currentTarget){
-    overlay.classList.remove('overlay_popup-opened');
-    disPopup(place);
-    disPopup(form);
-    disPopup(image);
-  }
+overlay.forEach((item) => {
+  item.addEventListener("mousedown", (event) => {
+    if (event.target === event.currentTarget){
+      disOverlay ();
+    }
+  })
 })
 
 body.addEventListener('keyup', function(event) {
   event.preventDefault();
-  if (event.keyCode === 27) {
-    overlay.classList.remove('overlay_popup-opened');
-    disPopup(place);
-    disPopup(form);
-    disPopup(image);
+  if (event.keyCode == 27) {
+    disOverlay ();
   }
 })
 
@@ -135,7 +127,6 @@ function deleteElement (evt) {
 render();
 form.addEventListener('submit', handleFormSubmit);
 place.addEventListener('submit', hendlerSubmit);
-editButton.addEventListener('click', openOverlay); 
+editButton.addEventListener('click', openOverlayEdit); 
 editButton.addEventListener('click', popupOpened); 
-addButton.addEventListener('click', openOverlay);
-addButton.addEventListener('click', placeOpened);
+addButton.addEventListener('click', openOverlayPlace);
