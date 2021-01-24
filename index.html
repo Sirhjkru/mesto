@@ -33,19 +33,19 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <section id="edit" class="overlay">
-      <form class="popup" name="popup">
+    <section class="overlay overlay_edit">
+      <form class="popup popup_edit" name="popup">
         <button class="popup__button-close" type="button">
           <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input" type="text" name="name">
-        <input class="popup__input" type="text" name="job">
+        <input class="popup__input" type="text" name="name" placeholder ="Имя">
+        <input class="popup__input" type="text" name="job" placeholder ="Вид деятельности">
         <button class="popup__button-save" type="submit">Сохранить</button>
       </form>
     </section>
-    <section id="place" class="overlay">
-      <form class="popup" name="place">
+    <section class="overlay overlay_place">
+      <form class="popup popup_place" name="place">
         <button class="popup__button-close" type="button">
           <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
         </button>
@@ -55,7 +55,7 @@
         <button class="popup__button-save" type="submit">Сохранить</button>
       </form>
     </section>
-    <section id="image" class="overlay">
+    <section class="overlay overlay_image">
       <form class="popup popup_form-disabled" name="image">
         <img src="#" class="popup__image" alt="Картинка из карточки">
         <button class="popup__button-close" type="button">
