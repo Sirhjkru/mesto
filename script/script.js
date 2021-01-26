@@ -12,7 +12,6 @@ const popupImage = document.querySelector('.overlay_image');
 const overlays = document.querySelectorAll('.overlay');
 const editButton = document.querySelector('.profile__edit-button');
 const buttonsClose = document.querySelectorAll('.popup__image-button-close');
-// const buttonEsc = 27;
 const nameInput = form.elements.name;
 const jobInput = form.elements.job;
 const designation = place.elements.designation;
@@ -84,7 +83,6 @@ function openImage (evt) {
 }
 
 function createCard (item) {
-  console.log(item)
   const htmlElement = itemTemplate.cloneNode(true);
   const deleteButton = htmlElement.querySelector('.photo-grid__delete-button');
   const photoGridImage = htmlElement.querySelector('.photo-grid__image');
@@ -97,7 +95,6 @@ function createCard (item) {
   listenerButtonDelete(deleteButton);
   listenerButtonLike(buttonLike);
   listenerImage(photoGridImage)
-  console.log(photoGridElement)
   return photoGridElement
 }
 
