@@ -12,7 +12,7 @@ const popupImage = document.querySelector('.overlay_image');
 const overlays = document.querySelectorAll('.overlay');
 const editButton = document.querySelector('.profile__edit-button');
 const buttonsClose = document.querySelectorAll('.popup__image-button-close');
-const buttonEsc = 27;
+// const buttonEsc = 27;
 const nameInput = form.elements.name;
 const jobInput = form.elements.job;
 const designation = place.elements.designation;
@@ -64,8 +64,8 @@ function fillEditProfileFormFields () {
   jobInput.value = profileSubtitle.textContent;
 }
 
-function openPopup (name) {
-  name.classList.add('overlay_popup-opened');
+function openPopup (elem) {
+  elem.classList.add('overlay_popup-opened');
 }
 
 function deleteElement (evt) {
@@ -81,11 +81,10 @@ function openImage (evt) {
   popupImageCard.setAttribute('src', evt.target.src);
   popupImageCard.setAttribute('alt', evt.target.alt);
   imageTitle.innerText = evt.target.alt;
-  closeOverlayOnClickMouse(popupImage);
-  closeOverlayOnClickEsc(popupImage)
 }
 
 function createCard (item) {
+  console.log(item)
   const htmlElement = itemTemplate.cloneNode(true);
   const deleteButton = htmlElement.querySelector('.photo-grid__delete-button');
   const photoGridImage = htmlElement.querySelector('.photo-grid__image');
@@ -93,10 +92,13 @@ function createCard (item) {
   htmlElement.querySelector('.photo-grid__title').innerText = item.name;
   photoGridImage.setAttribute("src", item.link);
   photoGridImage.setAttribute("alt", item.name);
+  const photoGridElement = htmlElement.querySelector('.photo-grid__element');
   addCard(htmlElement);
   listenerButtonDelete(deleteButton);
   listenerButtonLike(buttonLike);
   listenerImage(photoGridImage)
+  console.log(photoGridElement)
+  return photoGridElement
 }
 
 function listenerImage (elem) {
@@ -116,7 +118,7 @@ function addCard (elem) {
 }
 
 function renderInitialCards () {
-  initialCards.forEach(createCard);
+  initialCards.forEach(item => {addCard(createCard(item))})
 };
 
 function addCardHandler(evt) {
@@ -127,7 +129,7 @@ function addCardHandler(evt) {
         name: designation.value,
         link: url.value
       }
-    createCard(item);
+      addCard(createCard(item))
   }
   closePopup(popupAddCard);
   clearInputPlace();
@@ -140,36 +142,32 @@ function editProfileHandler (evt) {
   closePopup (popupEditProfile);
 }
 
-function closeOverlayOnClickMouse (elem) {
-  elem.addEventListener("mousedown", (evt) => {
-    if (evt.target === evt.currentTarget){
-      closePopup(elem);
-    }
-  })
-}
+// function closeOverlayOnClickMouse (elem) {
+//   elem.addEventListener("mousedown", (evt) => {
+//     if (evt.target === evt.currentTarget){
+//       closePopup(elem);
+//     }
+//   })
+// }
 
-function closeOverlayOnClickEsc (elem) {
-  body.addEventListener('keyup', function(evt) {
-    evt.preventDefault();
-    if (evt.keyCode === buttonEsc) {
-      closePopup(elem);
-    }
-  })
-}
+// function closeOverlayOnClickEsc (elem) {
+//   body.addEventListener('keyup', function(evt) {
+//     evt.preventDefault();
+//     if (evt.keyCode === buttonEsc) {
+//       closePopup(elem);
+//     }
+//   })
+// }
 
 renderInitialCards();
 form.addEventListener('submit', editProfileHandler);
 place.addEventListener('submit', addCardHandler);
 editButton.addEventListener('click', () => {
   openPopup(popupEditProfile); 
-  closeOverlayOnClickMouse(popupEditProfile); 
   fillEditProfileFormFields();
-  closeOverlayOnClickEsc(popupEditProfile)
 }); 
 addCardButton.addEventListener('click', () => {
   openPopup(popupAddCard);
-  closeOverlayOnClickMouse(popupAddCard);
-  closeOverlayOnClickEsc(popupAddCard);
 });
 buttonCloseForm.addEventListener('click', () => closePopup(popupEditProfile));
 buttonClosePlace.addEventListener('click', () => {closePopup(popupAddCard); clearInputPlace();});
