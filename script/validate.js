@@ -39,7 +39,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
       formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));
+    const fieldsetList = Array.from(formElement.querySelectorAll('.form-set'));
     fieldsetList.forEach((fieldSet) => {
       setEventListeners(fieldSet)
       })

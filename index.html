@@ -35,16 +35,14 @@
     </footer>
     <section class="overlay overlay_edit">
       <form novalidate class="popup popup_edit" name="popup">
-        <fieldset class="form__set">
+        <fieldset class="form-set">
           <button class="popup__button-close" type="button">
             <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
           </button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input" id = "name-input" type="text" name="name" 
-          placeholder ="Имя" minlength="2" maxlength="40" required>
+          <input class="popup__input" id = "name-input" type="text" name="name" placeholder ="Имя" minlength="2" maxlength="40" required>
           <span class="popup__input-error name-input-error"></span>
-          <input class="popup__input" id = "job-input" type="text" name="job" 
-          placeholder ="Вид деятельности" minlength="2" maxlength="200" required>
+          <input class="popup__input" id = "job-input" type="text" name="job" placeholder ="Вид деятельности" minlength="2" maxlength="200" required>
           <span class="popup__input-error job-input-error"></span>
           <button class="popup__button-save" type="submit">Сохранить</button>
         </fieldset>
@@ -52,13 +50,12 @@
     </section>
     <section class="overlay overlay_place">
       <form novalidate class="popup popup_place" name="place">
-        <fieldset class="form__set">
+        <fieldset class="form-set">
           <button class="popup__button-close" type="button">
             <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
           </button>
           <h2 class="popup__title">Новое место</h2>
-          <input class="popup__input" id = "designation-input" type="text" name="designation" 
-          placeholder ="Название" minlength="2" maxlength="30" required>
+          <input class="popup__input" id = "designation-input" type="text" name="designation" placeholder ="Название" minlength="2" maxlength="30" required>
           <span class="popup__input-error designation-input-error"></span>
           <input class="popup__input" id = "link-input" type="url" name="link" placeholder ="Ссылка на картинку" required>
           <span class="popup__input-error link-input-error"></span>
