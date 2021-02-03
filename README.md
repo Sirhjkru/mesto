@@ -12,4 +12,4 @@
 5. template
 
 
-[Ссылка на репозиторий](https://sirhjkru.github.io/mesto/index.html)
+[Ссылка на проект](https://sirhjkru.github.io/mesto/index.html)

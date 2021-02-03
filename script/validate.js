@@ -32,8 +32,8 @@ const showInputError = (formElement, inputElement, errorMessage) => {
       checkInputValidity(formElement, inputElement);
     });
   };
-  ////////////////////////////////////////////////////////////////////////////////////
-  function validation () {
+ 
+  function enableValidation () {
     const formList = Array.from(formElements); 
     formList.forEach((formElement) => {
       formElement.addEventListener('submit', (evt) => {
