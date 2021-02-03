@@ -33,26 +33,37 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <section novalidate class="overlay overlay_edit">
-      <form class="popup popup_edit" name="popup">
-        <button class="popup__button-close" type="button">
-          <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
-        </button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input" type="text" name="name" placeholder ="Имя">
-        <input class="popup__input" type="text" name="job" placeholder ="Вид деятельности">
-        <button class="popup__button-save" type="submit">Сохранить</button>
+    <section class="overlay overlay_edit">
+      <form novalidate class="popup popup_edit" name="popup">
+        <fieldset class="form__set">
+          <button class="popup__button-close" type="button">
+            <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
+          </button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input" id = "name-input" type="text" name="name" 
+          placeholder ="Имя" minlength="2" maxlength="40" required>
+          <span class="popup__input-error name-input-error"></span>
+          <input class="popup__input" id = "job-input" type="text" name="job" 
+          placeholder ="Вид деятельности" minlength="2" maxlength="200" required>
+          <span class="popup__input-error job-input-error"></span>
+          <button class="popup__button-save" type="submit">Сохранить</button>
+        </fieldset>
       </form>
     </section>
-    <section novalidate class="overlay overlay_place">
-      <form class="popup popup_place" name="place">
-        <button class="popup__button-close" type="button">
-          <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
-        </button>
-        <h2 class="popup__title">Новое место</h2>
-        <input class="popup__input" type="text" name="designation" placeholder ="Название">
-        <input class="popup__input" type="text" name="link" placeholder ="Ссылка на картинку">
-        <button class="popup__button-save" type="submit">Сохранить</button>
+    <section class="overlay overlay_place">
+      <form novalidate class="popup popup_place" name="place">
+        <fieldset class="form__set">
+          <button class="popup__button-close" type="button">
+            <img class="popup__image-button-close" src="./images/Close-Icon.svg" alt="Кнопка 'Закрыть'">
+          </button>
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__input" id = "designation-input" type="text" name="designation" 
+          placeholder ="Название" minlength="2" maxlength="30" required>
+          <span class="popup__input-error designation-input-error"></span>
+          <input class="popup__input" id = "link-input" type="url" name="link" placeholder ="Ссылка на картинку" required>
+          <span class="popup__input-error link-input-error"></span>
+          <button class="popup__button-save popup__button-save_inactive" type="submit" disabled>Сохранить</button>
+        </fieldset>
       </form>
     </section>
     <section class="overlay overlay_image">
@@ -77,5 +88,6 @@
     </li>
   </template>
   <script src="./script/script.js"></script>
+  <script src="./script/validate.js"></script>
 </body>
 </html>
