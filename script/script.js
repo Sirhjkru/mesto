@@ -12,7 +12,8 @@ const profileTitle = document.querySelector('.profile__title')
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const popupImageCard = image.querySelector('.popup__image');
 const itemTemplate = document.querySelector('.template').content;
-const popups = document.querySelectorAll('.overlay')
+const popups = document.querySelectorAll('.overlay');
+const imageTitle = image.querySelector('.popup__title');
 
 function clearInputPlace () {
   designation.value = "";
@@ -46,7 +47,7 @@ function openImage (item) {
   openPopup(popupImage);
   popupImageCard.setAttribute('src', item.link);
   popupImageCard.setAttribute('alt', item.name);
-  image.querySelector('.popup__title').innerText = item.name;
+  imageTitle.innerText = item.name;
 }
 
 function createCard (item) {
@@ -106,6 +107,21 @@ function editProfileHandler (evt) {
   closePopup (popupEditProfile);
 }
 
+function disableErrorMessage (popup) {
+  popup.querySelectorAll('.popup__input').forEach((elem) => {
+    elem.classList.remove('popup__input_error');
+  })
+  popup.querySelectorAll('.popup__input-error').forEach((elem) => {
+    elem.innerText = ''
+  })
+}
+
+function disableButtonSubmit (popup) {
+  const buttonSubmit = popup.querySelector('.popup__button-save')
+  buttonSubmit.setAttribute('disabled', true)
+  buttonSubmit.classList.add('popup__button-save_inactive')
+}
+
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.overlay_popup-opened')
@@ -121,9 +137,6 @@ popups.forEach((popup) => {
             closePopup(popup)
         }
         if (evt.target.classList.contains('popup__image-button-close')) {
-          if(popup.classList.contains('overlay_place')){
-            clearInputPlace();
-          }
           closePopup(popup);
         }
     })
@@ -133,8 +146,13 @@ profileForm.addEventListener('submit', editProfileHandler);
 place.addEventListener('submit', addCardHandler);
 document.querySelector('.profile__edit-button').addEventListener('click', () => {
   openPopup(popupEditProfile); 
+  disableErrorMessage(popupEditProfile)
+  disableButtonSubmit(popupEditProfile)
   fillEditProfileFormFields();
 }); 
 document.querySelector('.profile__add-button').addEventListener('click', () => {
+  clearInputPlace();
+  disableErrorMessage(popupAddCard)
+  disableButtonSubmit(popupAddCard)
   openPopup(popupAddCard);
 });

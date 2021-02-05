@@ -39,7 +39,6 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 /* Блок overlay */
-@import url(../blocks/form-set/form-set.css);
 @import url(../blocks/overlay/overlay.css);
 @import url(../blocks/overlay/_popup-opened/overlay_popup-opened.css);
 @import url(../blocks/popup/popup.css);

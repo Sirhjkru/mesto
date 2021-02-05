@@ -6,9 +6,7 @@
   margin: 14px auto 0;
   text-align: center;
   color: #FFFFFF;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  word-break: break-all;
 }
 
 @media screen and (min-width: 1024px) {
