@@ -1,11 +1,11 @@
 export class Card {
   constructor(selector, itemTemplate, openImage) {
-    this._conteiner = document.querySelector(`${selector}`);
+    this._container = document.querySelector(`${selector}`);
     this._itemTemplate = itemTemplate;
     this._openImage = openImage;
   }
 
-  createCard(item) {
+  _getTemplate(item) {
     this._htmlElement = this._itemTemplate.cloneNode(true);
     this._photoGridImage = this._htmlElement.querySelector(
       ".photo-grid__image"
@@ -25,9 +25,17 @@ export class Card {
     this._photoGridImage = this._htmlElement.querySelector(
       ".photo-grid__image"
     );
+    this._setEventListeners(item);
+  }
+
+  _setEventListeners(item) {
     this._listenerButtonDelete();
     this._listenerButtonLike();
     this._listenerImage(item);
+  }
+
+  getView(item) {
+    this._getTemplate(item);
     return this._photoGridElement;
   }
 
@@ -47,9 +55,5 @@ export class Card {
     this._photoGridImage.addEventListener("click", () => {
       this._openImage(item);
     });
-  }
-
-  addCard(elem) {
-    this._conteiner.prepend(elem);
   }
 }

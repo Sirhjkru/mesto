@@ -1,6 +1,6 @@
 import { initialCards } from "./cards-list.js";
-import { Card } from "./card.js";
-import { FormValidator } from "./formValidator.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 const profileForm = document.querySelector(".popup_edit");
 const place = document.querySelector(".popup_place");
 const image = document.querySelector(".popup_form-disabled");
@@ -51,21 +51,23 @@ function openImage(item) {
   imageTitle.innerText = item.name;
 }
 
+function addCard(elem) {
+  document.querySelector(".photo-grid__elements").prepend(elem);
+}
+
 function renderInitialCards() {
   initialCards.forEach((item) => {
-    cardList.addCard(cardList.createCard(item));
+    addCard(cardList.getView(item));
   });
 }
 
 function addCardHandler(evt) {
   evt.preventDefault();
-  if (designation.value !== "" || url.value !== "") {
-    const item = {
-      name: designation.value,
-      link: url.value,
-    };
-    cardList.addCard(cardList.createCard(item));
-  }
+  const item = {
+    name: designation.value,
+    link: url.value,
+  };
+  addCard(cardList.getView(item));
   closePopup(popupAddCard);
   clearInputPlace();
 }
