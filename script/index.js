@@ -38,12 +38,6 @@ function openPopup(popup) {
   document.addEventListener("keydown", closeByEscape);
 }
 
-const cardList = new Card(
-  ".photo-grid__elements",
-  document.querySelector(".template").content,
-  openImage
-);
-
 function openImage(item) {
   openPopup(popupImage);
   popupImageCard.setAttribute("src", item.link);
@@ -55,9 +49,18 @@ function addCard(elem) {
   document.querySelector(".photo-grid__elements").prepend(elem);
 }
 
+const cardList = (item) => {
+  return new Card(
+    ".photo-grid__elements",
+    document.querySelector(".template").content,
+    openImage,
+    item
+  );
+};
+
 function renderInitialCards() {
   initialCards.forEach((item) => {
-    addCard(cardList.getView(item));
+    addCard(cardList(item).getView());
   });
 }
 
@@ -67,7 +70,7 @@ function addCardHandler(evt) {
     name: designation.value,
     link: url.value,
   };
-  addCard(cardList.getView(item));
+  addCard(cardList(item).getView());
   closePopup(popupAddCard);
   clearInputPlace();
 }
@@ -105,10 +108,10 @@ renderInitialCards();
 
 popups.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("overlay_popup-opened")) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains("popup__image-button-close")) {
+    if (
+      evt.target.classList.contains("overlay_popup-opened") ||
+      evt.target.classList.contains("popup__image-button-close")
+    ) {
       closePopup(popup);
     }
   });
