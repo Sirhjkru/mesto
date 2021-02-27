@@ -1,59 +1,59 @@
 export class Card {
-  constructor(selector, itemTemplate, openImage) {
+  constructor(selector, itemTemplate, openImage, item) {
     this._container = document.querySelector(`${selector}`);
     this._itemTemplate = itemTemplate;
     this._openImage = openImage;
+    this._item = item;
   }
 
-  _getTemplate(item) {
-    this._htmlElement = this._itemTemplate.cloneNode(true);
-    this._photoGridImage = this._htmlElement.querySelector(
-      ".photo-grid__image"
-    );
-    this._htmlElement.querySelector(".photo-grid__title").innerText = item.name;
-    this._photoGridImage.setAttribute("src", item.link);
-    this._photoGridImage.setAttribute("alt", item.name);
-    this._photoGridElement = this._htmlElement.querySelector(
-      ".photo-grid__element"
-    );
-    this._deleteButton = this._htmlElement.querySelector(
-      ".photo-grid__delete-button"
-    );
-    this._buttonLike = this._htmlElement.querySelector(
-      ".photo-grid__button-like"
-    );
-    this._photoGridImage = this._htmlElement.querySelector(
-      ".photo-grid__image"
-    );
-    this._setEventListeners(item);
+  _getTemplate() {
+    const htmlElement = this._itemTemplate.cloneNode(true);
+    return htmlElement;
   }
 
-  _setEventListeners(item) {
-    this._listenerButtonDelete();
-    this._listenerButtonLike();
-    this._listenerImage(item);
+  _generateCard() {
+    this._element = this._getTemplate();
+    this._photoGridImage = this._element.querySelector(".photo-grid__image");
+    this._element.querySelector(
+      ".photo-grid__title"
+    ).innerText = this._item.name;
+    this._photoGridImage.setAttribute("src", this._item.link);
+    this._photoGridImage.setAttribute("alt", this._item.name);
+    this._setEventListeners();
+    return this._element;
   }
 
-  getView(item) {
-    this._getTemplate(item);
-    return this._photoGridElement;
+  _handlerButtonLike(evt) {
+    evt.target.classList.toggle("photo-grid__button-like_active");
   }
 
-  _listenerButtonLike() {
-    this._buttonLike.addEventListener("click", (evt) => {
-      evt.target.classList.toggle("photo-grid__button-like_active");
-    });
+  _handlerButtonDelete(evt) {
+    evt.target.closest(".photo-grid__element").remove();
   }
 
-  _listenerButtonDelete() {
-    this._deleteButton.addEventListener("click", (evt) => {
-      evt.target.closest(".photo-grid__element").remove();
-    });
+  _handlerImage() {
+    this._openImage(this._item);
   }
 
-  _listenerImage(item) {
-    this._photoGridImage.addEventListener("click", () => {
-      this._openImage(item);
-    });
+  _setEventListeners() {
+    this._element
+      .querySelector(".photo-grid__button-like")
+      .addEventListener("click", (evt) => {
+        this._handlerButtonLike(evt);
+      });
+    this._element
+      .querySelector(".photo-grid__delete-button")
+      .addEventListener("click", (evt) => {
+        this._handlerButtonDelete(evt);
+      });
+    this._element
+      .querySelector(".photo-grid__image")
+      .addEventListener("click", (evt) => {
+        this._handlerImage(evt);
+      });
+  }
+
+  getView() {
+    return this._generateCard();
   }
 }
