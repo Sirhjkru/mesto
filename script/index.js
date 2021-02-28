@@ -3,19 +3,15 @@ import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 const profileForm = document.querySelector(".popup_edit");
 const place = document.querySelector(".popup_place");
-const image = document.querySelector(".popup_form-disabled");
 const popupEditProfile = document.querySelector(".overlay_edit");
 const popupAddCard = document.querySelector(".overlay_place");
-const popupImage = document.querySelector(".overlay_image");
 const nameInput = profileForm.elements.name;
 const jobInput = profileForm.elements.job;
 const designation = place.elements.designation;
 const url = place.elements.link;
 const profileTitle = document.querySelector(".profile__title");
 const profileSubtitle = document.querySelector(".profile__subtitle");
-const popupImageCard = image.querySelector(".popup__image");
 const popups = document.querySelectorAll(".overlay");
-const imageTitle = image.querySelector(".popup__title");
 const formElements = Array.from(document.querySelectorAll(".overlay"));
 
 function clearInputPlace() {
@@ -38,13 +34,6 @@ function openPopup(popup) {
   document.addEventListener("keydown", closeByEscape);
 }
 
-function openImage(item) {
-  openPopup(popupImage);
-  popupImageCard.setAttribute("src", item.link);
-  popupImageCard.setAttribute("alt", item.name);
-  imageTitle.innerText = item.name;
-}
-
 function addCard(elem) {
   document.querySelector(".photo-grid__elements").prepend(elem);
 }
@@ -53,7 +42,7 @@ const cardList = (item) => {
   return new Card(
     ".photo-grid__elements",
     document.querySelector(".template").content,
-    openImage,
+    openPopup,
     item
   );
 };

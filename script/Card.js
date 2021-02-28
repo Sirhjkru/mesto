@@ -1,8 +1,8 @@
 export class Card {
-  constructor(selector, itemTemplate, openImage, item) {
+  constructor(selector, itemTemplate, openPopup, item) {
     this._container = document.querySelector(`${selector}`);
     this._itemTemplate = itemTemplate;
-    this._openImage = openImage;
+    this._openPopup = openPopup;
     this._item = item;
   }
 
@@ -32,7 +32,12 @@ export class Card {
   }
 
   _handlerImage() {
-    this._openImage(this._item);
+    const image = document.querySelector(".popup_form-disabled");
+    const popupImageCard = image.querySelector(".popup__image");
+    this._openPopup(document.querySelector(".overlay_image"));
+    popupImageCard.setAttribute("src", this._item.link);
+    popupImageCard.setAttribute("alt", this._item.name);
+    image.querySelector(".popup__title").innerText = this._item.name;
   }
 
   _setEventListeners() {
