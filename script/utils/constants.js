@@ -1,0 +1,9 @@
+export const profileForm = document.querySelector(".popup_edit");
+export const place = document.querySelector(".popup_place");
+export const popupEditProfile = document.querySelector(".overlay_edit");
+export const popupAddCard = document.querySelector(".overlay_place");
+export const nameInput = profileForm.elements.name;
+export const jobInput = profileForm.elements.job;
+export const profileTitle = document.querySelector(".profile__title");
+export const profileSubtitle = document.querySelector(".profile__subtitle");
+export const formElements = Array.from(document.querySelectorAll(".overlay"));

@@ -1,6 +1,5 @@
 export class Card {
-  constructor(selector, itemTemplate, openPopup, item) {
-    this._container = document.querySelector(`${selector}`);
+  constructor(itemTemplate, {openPopup}, item) {
     this._itemTemplate = itemTemplate;
     this._openPopup = openPopup;
     this._item = item;
@@ -31,15 +30,6 @@ export class Card {
     evt.target.closest(".photo-grid__element").remove();
   }
 
-  _handlerImage() {
-    const image = document.querySelector(".popup_form-disabled");
-    const popupImageCard = image.querySelector(".popup__image");
-    this._openPopup(document.querySelector(".overlay_image"));
-    popupImageCard.setAttribute("src", this._item.link);
-    popupImageCard.setAttribute("alt", this._item.name);
-    image.querySelector(".popup__title").innerText = this._item.name;
-  }
-
   _setEventListeners() {
     this._element
       .querySelector(".photo-grid__button-like")
@@ -53,9 +43,7 @@ export class Card {
       });
     this._element
       .querySelector(".photo-grid__image")
-      .addEventListener("click", (evt) => {
-        this._handlerImage(evt);
-      });
+      .addEventListener("click", () => {this._openPopup(this._item)});
   }
 
   getView() {
