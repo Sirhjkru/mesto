@@ -1,17 +1,18 @@
-import { initialCards } from "./utils/cards-list.js";
-import { Card } from "./components/Card.js";
-import { FormValidator } from "./components/FormValidator.js";
+import './index.css'
+import { initialCards } from "../script/utils/cards-list.js";
+import { Card } from "../script/components/Card.js";
+import { FormValidator } from "../script/components/FormValidator.js";
 import {
   profileForm,
   place,
   popupEditProfile,
   popupAddCard,
   formElements,
-} from "./utils/constants.js";
-import { Section } from "./components/Section.js";
-import { UserInfo } from "./components/UserInfo.js";
-import { PopupWithForm } from "./components/PopupWithForm.js";
-import { PopupWithImage } from "./components/PopupWithImage.js";
+} from "../script/utils/constants.js";
+import { Section } from "../script/components/Section.js";
+import { UserInfo } from "../script/components/UserInfo.js";
+import { PopupWithForm } from "../script/components/PopupWithForm.js";
+import { PopupWithImage } from "../script/components/PopupWithImage.js";
 
 
 const cardList = (item) => {
