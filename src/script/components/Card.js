@@ -41,9 +41,9 @@ export class Card {
       .addEventListener("click", (evt) => {
         this._handlerButtonDelete(evt);
       });
-    this._element
-      .querySelector(".photo-grid__image")
-      .addEventListener("click", () => {this._openPopup(this._item)});
+    this._photoGridImage.addEventListener("click", () => {
+      this._openPopup(this._item);
+    });
   }
 
   getView() {

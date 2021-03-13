@@ -68,4 +68,22 @@ export class FormValidator {
       }
     }
   }
+
+  setDefaultForm() {
+    this._formItem
+      .querySelectorAll(this._config.inputSelector)
+      .forEach((elem) => {
+        elem.classList.remove("popup__input_error");
+      });
+    this._formItem
+      .querySelectorAll(`${this._config.inputSelector}-error`)
+      .forEach((elem) => {
+        elem.innerText = "";
+      });
+    const buttonSubmit = this._formItem.querySelector(
+      this._config.submitButtonSelector
+    );
+    buttonSubmit.setAttribute("disabled", true);
+    buttonSubmit.classList.add("popup__button-save_inactive");
+  }
 }
