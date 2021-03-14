@@ -12,7 +12,10 @@ import {
   photoContainerSelector,
   profileEditButton,
   profileAddButton,
+  nameInput,
+  jobInput,
   validationConfig,
+  editFormConfig,
 } from "../script/utils/constants.js";
 import { Section } from "../script/components/Section.js";
 import { UserInfo } from "../script/components/UserInfo.js";
@@ -34,23 +37,20 @@ const createCard = (item) => {
   );
 };
 
-const renderInitialCards = (cards) => {
+const createCardList = (cards) => {
   return new Section(
     {
       items: cards,
       render: (element) => {
-        renderInitialCards().addItem(createCard(element).getView());
+        createCardList().addItem(createCard(element).getView());
       },
     },
     photoContainerSelector
   );
 };
-const userInfo = new UserInfo({
-  selectorUserName: ".profile__title",
-  selectorUserDescription: ".profile__subtitle",
-});
+const userInfo = new UserInfo(editFormConfig);
 
-renderInitialCards(initialCards).renderer();
+createCardList(initialCards).renderer();
 
 const popupWithProfile = new PopupWithForm(popupEditProfile, profileForm, {
   handleFormSubmit: (input) => {
@@ -61,14 +61,16 @@ popupWithProfile.setEventListeners();
 
 const popupWithPlace = new PopupWithForm(popupAddCard, place, {
   handleFormSubmit: ({ designation: name, link }) => {
-    renderInitialCards().addItem(createCard({ name, link }).getView());
+    createCardList().addItem(createCard({ name, link }).getView());
   },
 });
 popupWithPlace.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
   addEditFormValidator.setDefaultForm();
-  userInfo.setUserInfo(userInfo.getUserInfo());
+  const info = userInfo.getUserInfo()
+  nameInput.value = info.name;
+  jobInput.value = info.job; 
   popupWithProfile.open();
 });
 
