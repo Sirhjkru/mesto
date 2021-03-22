@@ -13,4 +13,7 @@ export class UserInfo {
     this._userName.textContent = name;
     this._userjob.textContent = about;
   }
+  setImgAvatar(select, {avatar: link}) {
+    select.setAttribute('src', `${link}`)
+  }
 }

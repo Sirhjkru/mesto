@@ -1,8 +1,7 @@
 .photo-grid__button-like {
   width: 22px;
-  margin-top: 31px;
-  margin-right: 22.4px;
-  margin-bottom: 31px;
+  height: 19px;
+  margin: 0;
   background: none;
   background-image: url('../../../images/button-like.svg');
   border: none;

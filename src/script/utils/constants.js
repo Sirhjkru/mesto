@@ -20,9 +20,6 @@ export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
 export const profileAddButton = document.querySelector(".profile__add-button");
-export const profileUpdateAvatar = document.querySelector(
-  ".profile__avatar-button-edit"
-);
 export const validationConfig = {
   fieldSetSelector: ".form-set",
   inputSelector: ".popup__input",
