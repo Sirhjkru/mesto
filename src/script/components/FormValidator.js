@@ -5,17 +5,13 @@ export class FormValidator {
   }
 
   _showInputError(inputElement, errorMessage) {
-    const errorElement = this._formItem.querySelector(
-      `.${inputElement.id}-error`
-    );
+    const errorElement = inputElement.nextElementSibling;
     inputElement.classList.add(this._config.inputErrorClass);
     errorElement.textContent = errorMessage;
   }
 
   _hideInputError(inputElement) {
-    const errorElement = this._formItem.querySelector(
-      `.${inputElement.id}-error`
-    );
+    const errorElement = inputElement.nextElementSibling;
     inputElement.classList.remove(this._config.inputErrorClass);
     errorElement.textContent = "";
   }
