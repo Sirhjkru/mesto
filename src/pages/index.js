@@ -24,7 +24,7 @@ import {
   avatarForm,
 } from "../script/utils/constants.js";
 import { Section } from "../script/components/Section.js";
-import { PopupCardDelete } from "../script/components/PopupCardDelete.js";
+import { PopupWithDeleteCard } from "../script/components/PopupWithDeleteCard.js";
 import { UserInfo } from "../script/components/UserInfo.js";
 import { PopupWithForm } from "../script/components/PopupWithForm.js";
 import { PopupWithImage } from "../script/components/PopupWithImage.js";
@@ -34,20 +34,28 @@ import { Api } from "../script/components/Api.js";
 const api = new Api(apiConfig);
 const userInfo = new UserInfo(editFormConfig);
 
-
 const openPopupImage = new PopupWithImage(popupImage);
 openPopupImage.setEventListeners();
 
 const openPopupAvatarForm = new PopupWithForm(popupAvatarUpdate, avatarUpdate, {
   handleFormSubmit: (items) => {
-    api.updateAvatar(items).then((data) => {
-      userInfo.setImgAvatar(avatarImg, data);
-    });
+    api
+      .updateAvatar(items)
+      .then((data) => {
+        userInfo.setImgAvatar(avatarImg, data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        openPopupAvatarForm.renderLoading(false);
+        openPopupAvatarForm.close();
+      });
   },
 });
 openPopupAvatarForm.setEventListeners();
 
-const openWarning = new PopupCardDelete(popupWarning, warning);
+const openWarning = new PopupWithDeleteCard(popupWarning, warning);
 openWarning.setEventListeners();
 
 const createCard = (item, info) => {
@@ -70,31 +78,54 @@ const createCardList = (api, cards) => {
     {
       items: cards,
       render: (element) => {
-          api.getUser().then((info) => {
+        api
+          .getUser()
+          .then((info) => {
             createCardList().addItem(createCard(element, info).getView());
           })
-        ;
+          .catch((err) => {
+            console.log(err);
+          });
       },
     },
     photoContainerSelector
   );
 };
 
+api
+  .getInitialCards()
+  .then((data) => {
+    createCardList(api, data.reverse()).renderer();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-api.getInitialCards().then((data) => {
-  createCardList(api, data.reverse()).renderer();
-});
+api
+  .getUser()
+  .then((data) => {
+    avatarImg.setAttribute("src", data.avatar);
+    userInfo.setUserInfo(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-//Проверить правильность работы функции
-api.getUser().then((data) => {
-  avatarImg.setAttribute("src", data.avatar);
-  userInfo.setUserInfo(data);
-});
 //Добавлние информации о юзере
 const popupWithProfile = new PopupWithForm(popupEditProfile, profileForm, {
   handleFormSubmit: (input) => {
-    api.editProfile(input).then(data => {
-      userInfo.setUserInfo(data);})
+    api
+      .editProfile(input)
+      .then((data) => {
+        userInfo.setUserInfo(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupWithProfile.close();
+        popupWithProfile.renderLoading(false);
+      });
   },
 });
 popupWithProfile.setEventListeners();
@@ -102,15 +133,28 @@ popupWithProfile.setEventListeners();
 //Создаем карточку из формы
 const popupWithPlace = new PopupWithForm(popupAddCard, place, {
   handleFormSubmit: ({ designation: name, link }) => {
-    api.addCard({ name, link }).then((item) => {
-      api.getUser().then((info) => {
-        createCardList().addItem(createCard(item, info).getView());
+    api
+      .addCard({ name, link })
+      .then((item) => {
+        api
+          .getUser()
+          .then((info) => {
+            createCardList().addItem(createCard(item, info).getView());
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
-    });
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupWithPlace.close();
+        popupWithPlace.renderLoading(false);
+      });
   },
 });
 popupWithPlace.setEventListeners();
-
 avatarForm.addEventListener("click", () => {
   addCardFormValidator.setDefaultForm();
   openPopupAvatarForm.open();

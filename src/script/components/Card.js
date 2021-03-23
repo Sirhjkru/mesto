@@ -41,7 +41,12 @@ export class Card {
     ).innerText = this._item.name;
     this._photoGridImage.setAttribute("src", this._item.link);
     this._photoGridImage.setAttribute("alt", this._item.name);
-    if (this._item.likes.length){
+    if (this._item.likes.length) {
+      if (this._item.likes.some((elem) => elem._id === this._userInfo._id)) {
+        this._element
+          .querySelector(".photo-grid__button-like")
+          .classList.add("photo-grid__button-like_active");
+      }
       this._element.querySelector(
         ".photo-grid__count-like"
       ).innerText = this._item.likes.length;
@@ -55,9 +60,20 @@ export class Card {
   }
 
   _handlerButtonLike(evt) {
-    // if ()
-    this._api.likeCard(this._item._id).then(() => {
-      evt.target.classList.add("photo-grid__button-like_active");
-    })
+    if (!evt.target.classList.contains("photo-grid__button-like_active")) {
+      this._api.likeCard(this._item._id).then((data) => {
+        evt.target.classList.add("photo-grid__button-like_active");
+        evt.target.nextElementSibling.textContent = data.likes.length;
+      });
+    } else {
+      this._api.deletelikeCard(this._item._id).then((data) => {
+        evt.target.classList.remove("photo-grid__button-like_active");
+        if (data.likes.length) {
+          evt.target.nextElementSibling.textContent = data.likes.length;
+        } else {
+          evt.target.nextElementSibling.textContent = "";
+        }
+      });
+    }
   }
 }
