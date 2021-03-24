@@ -61,19 +61,29 @@ export class Card {
 
   _handlerButtonLike(evt) {
     if (!evt.target.classList.contains("photo-grid__button-like_active")) {
-      this._api.likeCard(this._item._id).then((data) => {
-        evt.target.classList.add("photo-grid__button-like_active");
-        evt.target.nextElementSibling.textContent = data.likes.length;
-      });
-    } else {
-      this._api.deletelikeCard(this._item._id).then((data) => {
-        evt.target.classList.remove("photo-grid__button-like_active");
-        if (data.likes.length) {
+      this._api
+        .likeCard(this._item._id)
+        .then((data) => {
+          evt.target.classList.add("photo-grid__button-like_active");
           evt.target.nextElementSibling.textContent = data.likes.length;
-        } else {
-          evt.target.nextElementSibling.textContent = "";
-        }
-      });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      this._api
+        .deletelikeCard(this._item._id)
+        .then((data) => {
+          evt.target.classList.remove("photo-grid__button-like_active");
+          if (data.likes.length) {
+            evt.target.nextElementSibling.textContent = data.likes.length;
+          } else {
+            evt.target.nextElementSibling.textContent = "";
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 }

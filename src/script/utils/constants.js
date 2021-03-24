@@ -31,6 +31,7 @@ export const validationConfig = {
 export const editFormConfig = {
   selectorUserName: ".profile__title",
   selectorUserDescription: ".profile__subtitle",
+  selctorAvatarImg: ".profile__avatar",
 };
 
 export const apiConfig = {

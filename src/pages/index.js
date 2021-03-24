@@ -42,7 +42,7 @@ const openPopupAvatarForm = new PopupWithForm(popupAvatarUpdate, avatarUpdate, {
     api
       .updateAvatar(items)
       .then((data) => {
-        userInfo.setImgAvatar(avatarImg, data);
+        userInfo.setImgAvatar(data.avatar);
       })
       .catch((err) => {
         console.log(err);
@@ -73,39 +73,19 @@ const createCard = (item, info) => {
   );
 };
 
-const createCardList = (api, cards) => {
-  return new Section(
-    {
-      items: cards,
-      render: (element) => {
-        api
-          .getUser()
-          .then((info) => {
-            createCardList().addItem(createCard(element, info).getView());
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      },
+const createCardList = new Section(
+  {
+    render: (items, data) => {
+      createCardList.addItem(createCard(items, data).getView());
     },
-    photoContainerSelector
-  );
-};
-
-api
-  .getInitialCards()
-  .then((data) => {
-    createCardList(api, data.reverse()).renderer();
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-api
-  .getUser()
-  .then((data) => {
-    avatarImg.setAttribute("src", data.avatar);
-    userInfo.setUserInfo(data);
+  },
+  photoContainerSelector
+);
+Promise.all([api.getInitialCards(), api.getUser()])
+  .then((res) => {
+    createCardList.renderer(res);
+    userInfo.setUserInfo(res[1]);
+    userInfo.setImgAvatar(res[1].avatar);
   })
   .catch((err) => {
     console.log(err);
@@ -139,7 +119,7 @@ const popupWithPlace = new PopupWithForm(popupAddCard, place, {
         api
           .getUser()
           .then((info) => {
-            createCardList().addItem(createCard(item, info).getView());
+            createCardList.addItem(createCard(item, info).getView());
           })
           .catch((err) => {
             console.log(err);
