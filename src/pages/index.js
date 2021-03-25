@@ -18,7 +18,6 @@ import {
   popupAvatarUpdate,
   popupWarning,
   avatarUpdate,
-  avatarImg,
   warning,
   apiConfig,
   avatarForm,
@@ -30,6 +29,7 @@ import { PopupWithForm } from "../script/components/PopupWithForm.js";
 import { PopupWithImage } from "../script/components/PopupWithImage.js";
 import { enableIconEdit } from "../script/utils/utils.js";
 import { Api } from "../script/components/Api.js";
+let userId;
 
 const api = new Api(apiConfig);
 const userInfo = new UserInfo(editFormConfig);
@@ -75,15 +75,16 @@ const createCard = (item, info) => {
 
 const createCardList = new Section(
   {
-    render: (items, data) => {
-      createCardList.addItem(createCard(items, data).getView());
+    render: (items) => {
+      createCardList.addItem(createCard(items, userId).getView());
     },
   },
   photoContainerSelector
 );
 Promise.all([api.getInitialCards(), api.getUser()])
   .then((res) => {
-    createCardList.renderer(res);
+    userId = res[1]._id;
+    createCardList.renderer(res[0]);
     userInfo.setUserInfo(res[1]);
     userInfo.setImgAvatar(res[1].avatar);
   })
@@ -116,14 +117,7 @@ const popupWithPlace = new PopupWithForm(popupAddCard, place, {
     api
       .addCard({ name, link })
       .then((item) => {
-        api
-          .getUser()
-          .then((info) => {
-            createCardList.addItem(createCard(item, info).getView());
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+            createCardList.addItem(createCard(item, userId).getView());
       })
       .catch((err) => {
         console.log(err);

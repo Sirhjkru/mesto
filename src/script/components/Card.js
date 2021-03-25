@@ -1,10 +1,10 @@
 export class Card {
-  constructor(itemTemplate, { openPopup }, item, api, userInfo, openWarning) {
+  constructor(itemTemplate, { openPopup }, item, api, userId, openWarning) {
     this._api = api;
     this._itemTemplate = itemTemplate;
     this._openPopup = openPopup;
     this._item = item;
-    this._userInfo = userInfo;
+    this._userId = userId;
     this._openWarning = openWarning;
   }
 
@@ -42,7 +42,7 @@ export class Card {
     this._photoGridImage.setAttribute("src", this._item.link);
     this._photoGridImage.setAttribute("alt", this._item.name);
     if (this._item.likes.length) {
-      if (this._item.likes.some((elem) => elem._id === this._userInfo._id)) {
+      if (this._item.likes.some((elem) => elem._id === this._userId)) {
         this._element
           .querySelector(".photo-grid__button-like")
           .classList.add("photo-grid__button-like_active");
@@ -51,7 +51,7 @@ export class Card {
         ".photo-grid__count-like"
       ).innerText = this._item.likes.length;
     }
-    if (this._item.owner._id !== this._userInfo._id) {
+    if (this._item.owner._id !== this._userId) {
       this._element.querySelector(".photo-grid__delete-button").style.display =
         "none";
     }
